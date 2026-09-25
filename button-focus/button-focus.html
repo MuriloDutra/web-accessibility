@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buttons with focus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,560;9..144,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="button-focus.css">
+</head>
+
+<body>
+    <main class="page">
+        <article class="card">
+            <p class="eyebrow"><a href="../index.html">Keyboard accessibility</a></p>
+            <h1>Buttons with focus</h1>
+            <p>Focus order should match the visual order. CSS can break that: a button can look last on the page while still being first in the tab sequence.</p>
+
+            <section class="demo" aria-labelledby="regular-heading">
+                <h2 id="regular-heading">Regular focus</h2>
+                <p class="hint">Tab through these buttons. Visual order and keyboard order stay aligned.</p>
+                <pre><code>&lt;button&gt;Last Page&lt;/button&gt;
+&lt;button&gt;Reload&lt;/button&gt;
+&lt;button&gt;Next Page&lt;/button&gt;</code></pre>
+                <div class="actions">
+                    <button type="button">Last Page</button>
+                    <button type="button">Reload</button>
+                    <button type="button">Next Page</button>
+                </div>
+            </section>
+
+            <section class="demo" aria-labelledby="css-heading">
+                <h2 id="css-heading">CSS affecting focus</h2>
+                <p class="hint"><code>float: right</code> moves Last Page visually, but Tab still lands on it first.</p>
+                <pre><code>&lt;button style="float: right;"&gt;Last Page&lt;/button&gt;
+&lt;button&gt;Reload&lt;/button&gt;
+&lt;button&gt;Next Page&lt;/button&gt;</code></pre>
+                <div class="float-demo">
+                    <button type="button" class="pull-right">Last Page</button>
+                    <button type="button">Reload</button>
+                    <button type="button">Next Page</button>
+                </div>
+            </section>
+        </article>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab index greater than 0</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,560;9..144,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="page">
+        <article class="card">
+            <p class="eyebrow"><a href="../index.html">Keyboard accessibility</a></p>
+            <h1>Tab index greater than 0</h1>
+            <p>A <code>tabindex</code> greater than <code>0</code> puts an element in a custom Tab order. Positive values are visited first, from lowest to highest, before anything with <code>tabindex="0"</code> or no <code>tabindex</code>.</p>
+
+            <section class="demo" aria-labelledby="positive-heading">
+                <h2 id="positive-heading">Buttons</h2>
+                <p>Tab through these buttons. Visual order is First, Second, Third. Tab order is Third, Second, First, because of <code>tabindex="3"</code>, <code>2</code>, and <code>1</code>.</p>
+                <p class="hint">Note: Positive <code>tabindex</code> is a bad practice. Keep the DOM in the order people should tab, and use CSS for layout. Another option is to reorder your DOM elements in the code.</p>
+                <pre><code>&lt;button tabindex="3"&gt;First&lt;/button&gt;
+&lt;button tabindex="2"&gt;Second&lt;/button&gt;
+&lt;button tabindex="1"&gt;Third&lt;/button&gt;</code></pre>
+                <div class="actions">
+                    <button type="button" tabindex="3">First</button>
+                    <button type="button" tabindex="2">Second</button>
+                    <button type="button" tabindex="1">Third</button>
+                </div>
+            </section>
+
+            <nav class="pager" aria-label="Lesson navigation">
+                <a class="pager-link" href="tabindex-0.html">Back</a>
+                <span class="pager-link" aria-disabled="true">Forth</span>
+            </nav>
+        </article>
+    </main>
+</body>
+</html>

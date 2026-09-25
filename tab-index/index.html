@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab index of -1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,560;9..144,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="page">
+        <article class="card">
+            <p class="eyebrow"><a href="../index.html">Keyboard accessibility</a></p>
+            <h1>Tab index of "-1"</h1>
+            <p>A <code>tabindex</code> of <code>-1</code> keeps an element out of the Tab order, but still lets you move focus to it with <code>focus()</code>.</p>
+
+            <section class="demo" aria-labelledby="button-heading">
+                <h2 id="button-heading">Buttons</h2>
+                <p>Tab through the page. Say Hello is skipped because it has <code>tabindex="-1"</code>. Use Focus on Hello Button to move focus to it in code.</p>
+                <pre><code>&lt;button tabindex="-1"&gt;Say Hello&lt;/button&gt;</code></pre>
+                <div class="actions">
+                    <button type="button" id="skipped" tabindex="-1">Say Hello</button>
+                    <button type="button" class="primary" id="focus-skipped">Focus on Hello Button</button>
+                </div>
+                <p class="status" id="status-button" role="status" aria-live="polite"></p>
+            </section>
+
+            <nav class="pager" aria-label="Lesson navigation">
+                <span class="pager-link" aria-disabled="true">Back</span>
+                <a class="pager-link primary" href="tabindex-0.html">Forth</a>
+            </nav>
+        </article>
+    </main>
+
+    <script>
+        const skipped = document.getElementById('skipped');
+        const focusSkipped = document.getElementById('focus-skipped');
+        const statusButton = document.getElementById('status-button');
+
+        focusSkipped.addEventListener('click', () => {
+            skipped.focus();
+        });
+
+        skipped.addEventListener('click', () => {
+            statusButton.textContent = 'Hello World!!!';
+        });
+    </script>
+</body>
+</html>

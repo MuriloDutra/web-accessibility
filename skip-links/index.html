@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skip links</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,560;9..144,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to products</a>
+
+    <header class="site-header">
+        <a class="logo" href="../index.html">Harbor &amp; Pine</a>
+        <nav class="site-nav" aria-label="Store">
+            <a href="#new">New</a>
+            <a href="#kitchen">Kitchen</a>
+            <a href="#table">Table</a>
+            <a href="#sale">Sale</a>
+            <a href="#cart">Cart (2)</a>
+        </nav>
+    </header>
+
+    <div class="shop">
+        <aside class="sidebar">
+            <h2>Filters</h2>
+
+            <fieldset>
+                <legend>Category</legend>
+                <label><input type="checkbox" name="category" value="cookware"> Cookware</label>
+                <label><input type="checkbox" name="category" value="textiles"> Textiles</label>
+                <label><input type="checkbox" name="category" value="spices"> Spices</label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Price</legend>
+                <label><input type="radio" name="price" value="any" checked> Any</label>
+                <label><input type="radio" name="price" value="under-40"> Under $40</label>
+                <label><input type="radio" name="price" value="40-80"> $40 to $80</label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Color</legend>
+                <label><input type="checkbox" name="color" value="natural"> Natural</label>
+                <label><input type="checkbox" name="color" value="black"> Black</label>
+                <label><input type="checkbox" name="color" value="green"> Forest green</label>
+            </fieldset>
+        </aside>
+
+        <main id="main-content" class="content" tabindex="-1">
+            <p class="eyebrow">Harbor &amp; Pine</p>
+            <h1>Kitchen shop</h1>
+            <p>Pans, aprons, and spices for a slower weekend in the kitchen.</p>
+
+            <ul class="products">
+                <li>
+                    <h3>Cast iron skillet</h3>
+                    <p>$68 · 10 inch</p>
+                    <a href="#skillet">View skillet</a>
+                </li>
+                <li>
+                    <h3>Canvas apron</h3>
+                    <p>$36 · Natural</p>
+                    <a href="#apron">View apron</a>
+                </li>
+                <li>
+                    <h3>Spice set</h3>
+                    <p>$24 · Three jars</p>
+                    <a href="#spice">View spices</a>
+                </li>
+                <li>
+                    <h3>Oak cutting board</h3>
+                    <p>$42 · Medium</p>
+                    <a href="#board">View board</a>
+                </li>
+            </ul>
+        </main>
+    </div>
+</body>
+</html>

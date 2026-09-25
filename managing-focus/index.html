@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Managing focus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,560;9..144,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../tab-index/styles.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="page">
+        <article class="card">
+            <p class="eyebrow"><a href="../index.html">Keyboard accessibility</a></p>
+            <h1>Managing focus</h1>
+            <p>When a tab opens, move focus to that section’s title (<code>tabindex="-1"</code>). Tab then starts inside the panel, so the user does not have to walk through Home, About, and Store before they can use the links.</p>
+
+            <section class="demo" aria-labelledby="tabs-heading">
+                <h2 id="tabs-heading">Tabs</h2>
+                <p>Open About: focus jumps to the About heading. From there, Tab goes to the links in that panel.</p>
+
+                <div class="tab-bar" role="tablist" aria-label="Example pages">
+                    <button type="button" role="tab" id="tab-home" aria-controls="panel-home" aria-selected="true">Home</button>
+                    <button type="button" role="tab" id="tab-about" aria-controls="panel-about" aria-selected="false">About</button>
+                    <button type="button" role="tab" id="tab-store" aria-controls="panel-store" aria-selected="false">Store</button>
+                </div>
+
+                <div class="tab-panel" role="tabpanel" id="panel-home" aria-labelledby="tab-home">
+                    <h3>Home</h3>
+                    <p>Harbor &amp; Pine is a small shop for weekend cooking. We post one new recipe each Friday, and we keep a short list of tools we actually use in the kitchen. Start here if you want tonight’s idea, or skip ahead to the shop.</p>
+                    <ul class="tab-links">
+                        <li><a href="#this-week">This week’s recipe</a></li>
+                        <li><a href="#newsletter">Join the newsletter</a></li>
+                        <li><a href="#visit">Visit the shop</a></li>
+                    </ul>
+                </div>
+
+                <div class="tab-panel" role="tabpanel" id="panel-about" aria-labelledby="tab-about" hidden>
+                    <h3 tabindex="-1" id="tab-about-heading">About</h3>
+                    <p>The shop started in a rented kitchen above a bookstore. Two friends cooked for neighbors, then wrote the recipes down so people could make them at home. We still buy from the same two farms we used in that first year.</p>
+                    <ul class="tab-links">
+                        <li><a href="#story">Our story</a></li>
+                        <li><a href="#team">Meet the team</a></li>
+                    </ul>
+                </div>
+
+                <div class="tab-panel" role="tabpanel" id="panel-store" aria-labelledby="tab-store" hidden>
+                    <h3>Store</h3>
+                    <p>Everything here is meant to last more than one season. We stock cast iron, cotton aprons, and a small set of spices we grind in-house. Orders placed before Thursday leave the same week.</p>
+                    <ul class="tab-links">
+                        <li><a href="#skillet">Cast iron skillet</a></li>
+                        <li><a href="#apron">Canvas apron</a></li>
+                        <li><a href="#spice">Spice set</a></li>
+                    </ul>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <script>
+        const tabs = [...document.querySelectorAll('[role="tab"]')];
+
+        function selectTab(nextTab) {
+            const isAbout = nextTab?.textContent === 'About';
+
+            tabs.forEach((tab) => {
+                const selected = tab === nextTab;
+                const panel = document.getElementById(tab.getAttribute('aria-controls'));
+                tab.setAttribute('aria-selected', String(selected));
+                panel.hidden = !selected;
+            });
+
+            nextTab.focus();
+            if (isAbout) {
+                document.getElementById('tab-about-heading').focus();
+            }
+        }
+
+        tabs.forEach((tab) => {
+            tab.addEventListener('click', () => {
+                selectTab(tab);
+            });
+
+            tab.addEventListener('keydown', (event) => {
+                const index = tabs.indexOf(tab);
+                let nextIndex = index;
+
+                if (event.key === 'ArrowRight') {
+                    nextIndex = (index + 1) % tabs.length;
+                } else if (event.key === 'ArrowLeft') {
+                    nextIndex = (index - 1 + tabs.length) % tabs.length;
+                } else {
+                    return;
+                }
+
+                event.preventDefault();
+                selectTab(tabs[nextIndex]);
+            });
+        });
+    </script>
+</body>
+</html>

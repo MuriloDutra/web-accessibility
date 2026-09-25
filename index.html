@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard accessibility</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,560;9..144,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="tab-index/styles.css">
+    <style>
+        .lessons {
+            display: grid;
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+
+        .lesson {
+            padding: 1.5rem 1.5rem 1.35rem;
+            border: 1px solid var(--line);
+            border-radius: 1rem;
+            background: #fff;
+        }
+
+        .lesson h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .lesson h2 a {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .lesson h2 a:focus-visible {
+            outline: 3px solid var(--focus);
+            outline-offset: 3px;
+        }
+
+        .lesson p:last-child {
+            margin-bottom: 0;
+        }
+
+        .sublessons {
+            margin: 0.25rem 0 0;
+            padding-left: 1.25rem;
+        }
+
+        .sublessons li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sublessons a {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .sublessons a:focus-visible {
+            outline: 3px solid var(--focus);
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="page">
+        <article class="card">
+            <p class="eyebrow">Keyboard accessibility</p>
+            <h1>Lessons</h1>
+            <p>Demos of keyboard focus and Tab order.</p>
+
+            <div class="lessons">
+                <section class="lesson" aria-labelledby="button-focus-heading">
+                    <h2 id="button-focus-heading"><a href="button-focus/button-focus.html">Button focus</a></h2>
+                    <p>When visual order and Tab order stop matching.</p>
+                </section>
+
+                <section class="lesson" aria-labelledby="tab-index-heading">
+                    <h2 id="tab-index-heading">Tab Index</h2>
+                    <p>How <code>tabindex</code> changes what Tab can reach.</p>
+                    <p class="hint">Note: Only add <code>tabindex</code> to interactive controls, e.g. buttons, inputs, tabs, dropdowns, etc. Ask yourself: “Is this something the user is going to interact with?”</p>
+                    <ul class="sublessons">
+                        <li>
+                            <a href="tab-index/index.html">Tab index of −1</a>
+                            — skipped by Tab, focusable in code.
+                        </li>
+                        <li>
+                            <a href="tab-index/tabindex-0.html">Tab index of 0</a>
+                            — adds a non-button to the Tab order.
+                        </li>
+                        <li>
+                            <a href="tab-index/tabindex-greater-than-0.html">Tab index greater than 0</a>
+                            — custom Tab order that ignores visual order.
+                        </li>
+                    </ul>
+                </section>
+                <section class="lesson" aria-labelledby="managing-focus-heading">
+                    <h2 id="managing-focus-heading"><a href="managing-focus/index.html">Managing focus</a></h2>
+                    <p>How to manage focus when using JavaScript to update the DOM.</p>
+                </section>
+
+                <section class="lesson" aria-labelledby="skip-links-heading">
+                    <h2 id="skip-links-heading"><a href="skip-links/index.html">Skip links</a></h2>
+                    <p>Jump past the nav and filters to the main content.</p>
+                </section>
+            </div>
+        </article>
+    </main>
+</body>
+
+</html>

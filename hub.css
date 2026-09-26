@@ -1,3 +1,17 @@
+.repo-link {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.repo-link:hover {
+    color: var(--accent-deep);
+}
+
+.repo-link:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+}
+
 .lessons {
     display: grid;
     gap: 1.25rem;

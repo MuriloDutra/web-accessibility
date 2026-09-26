@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Off-screen content</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,560;9..144,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="logo" href="../index.html">Harbor &amp; Pine</a>
+        <button type="button" class="menu-button" id="menu-button" aria-expanded="false" aria-controls="site-menu">
+            <span class="menu-icon" aria-hidden="true"></span>
+            Menu
+        </button>
+    </header>
+
+    <div class="menu-backdrop" id="menu-backdrop" hidden></div>
+
+    <nav class="site-menu" id="site-menu" aria-label="Store" hidden>
+        <h2 id="menu-heading">Menu</h2>
+        <a href="#new">New</a>
+        <a href="#kitchen">Kitchen</a>
+        <a href="#table">Table</a>
+        <a href="#about">About</a>
+        <a href="#cart">Cart (2)</a>
+    </nav>
+
+    <main class="content">
+        <p class="eyebrow">Off-screen content</p>
+        <h1>A menu that lives off to the side</h1>
+        <p>Open the hamburger. The links sit off-screen until you ask for them, then they slide in over the page.</p>
+        <p>We still grind spices on Thursdays and ship pans the same week. The shop is small on purpose.</p>
+    </main>
+
+    <script>
+        const button = document.getElementById('menu-button');
+        const menu = document.getElementById('site-menu');
+        const backdrop = document.getElementById('menu-backdrop');
+
+        function setOpen(open) {
+            button.setAttribute('aria-expanded', String(open));
+            menu.hidden = !open;
+            backdrop.hidden = !open;
+            document.body.classList.toggle('menu-open', open);
+
+            if (open) {
+                menu.querySelector('a').focus();
+            } else {
+                button.focus();
+            }
+        }
+
+        button.addEventListener('click', () => {
+            setOpen(button.getAttribute('aria-expanded') !== 'true');
+        });
+
+        backdrop.addEventListener('click', () => {
+            setOpen(false);
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
+                setOpen(false);
+            }
+        });
+    </script>
+</body>
+</html>

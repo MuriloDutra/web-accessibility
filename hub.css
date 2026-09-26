@@ -1,0 +1,49 @@
+.lessons {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+
+.lesson {
+    padding: 1.5rem 1.5rem 1.35rem;
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    background: #fff;
+}
+
+.lesson h2 {
+    margin-bottom: 0.5rem;
+}
+
+.lesson h2 a {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.lesson h2 a:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+}
+
+.lesson p:last-child {
+    margin-bottom: 0;
+}
+
+.sublessons {
+    margin: 0.25rem 0 0;
+    padding-left: 1.25rem;
+}
+
+.sublessons li {
+    margin-bottom: 0.5rem;
+}
+
+.sublessons a {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.sublessons a:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+}

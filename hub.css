@@ -10,6 +10,7 @@
 .repo-link:focus-visible {
     outline: 3px solid var(--focus);
     outline-offset: 3px;
+    box-shadow: 0 0 0 3px var(--card);
 }
 
 .lessons {
@@ -37,6 +38,7 @@
 .lesson h2 a:focus-visible {
     outline: 3px solid var(--focus);
     outline-offset: 3px;
+    box-shadow: 0 0 0 3px var(--card);
 }
 
 .lesson p:last-child {
@@ -60,4 +62,5 @@
 .sublessons a:focus-visible {
     outline: 3px solid var(--focus);
     outline-offset: 3px;
+    box-shadow: 0 0 0 3px var(--card);
 }

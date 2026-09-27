@@ -5,19 +5,19 @@
 }
 
 :root {
-    --ink: #1c1712;
-    --muted: #5c5348;
-    --paper: #f3eadc;
-    --card: #fffaf2;
-    --line: #d8cbb6;
-    --accent: #8a3d1b;
-    --accent-deep: #6c2e14;
-    --focus: #0b5f4b;
-    --code-bg: #efe4d2;
-    --hint-bg: #f4e4d4;
-    --button-hover-border: #c4b49a;
-    --button-hover-bg: #fffdf8;
-    --on-accent: #fff8f3;
+    --ink: #22182a;
+    --muted: #4a4450;
+    --paper: #efe6f3;
+    --card: #fbf7fd;
+    --line: #d4c6db;
+    --accent: #5b2c6f;
+    --accent-deep: #3f1d4d;
+    --focus: #8a4b00;
+    --code-bg: #eadff0;
+    --hint-bg: #efe4f5;
+    --button-hover-border: #b9a6c2;
+    --button-hover-bg: #f4eaf8;
+    --on-accent: #fbf7fd;
 }
 
 html {
@@ -29,8 +29,8 @@ body {
     min-height: 100vh;
     color: var(--ink);
     background:
-        radial-gradient(circle at 12% 18%, rgba(138, 61, 27, 0.08), transparent 32%),
-        radial-gradient(circle at 88% 82%, rgba(11, 95, 75, 0.08), transparent 36%),
+        radial-gradient(circle at 12% 18%, rgba(91, 44, 111, 0.12), transparent 32%),
+        radial-gradient(circle at 88% 82%, rgba(138, 75, 0, 0.1), transparent 36%),
         var(--paper);
     font-family: "Atkinson Hyperlegible", "Segoe UI", sans-serif;
     font-size: 20px;
@@ -52,8 +52,8 @@ body {
     border: 1px solid var(--line);
     border-radius: 1.5rem;
     box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.7) inset,
-        0 22px 50px rgba(55, 38, 18, 0.1);
+        0 1px 0 rgba(255, 255, 255, 0.75) inset,
+        0 22px 50px rgba(34, 24, 42, 0.1);
 }
 
 .eyebrow {
@@ -89,6 +89,11 @@ h1 {
     letter-spacing: -0.02em;
 }
 
+h1 code {
+    font-family: inherit;
+    font-weight: inherit;
+}
+
 h2 {
     margin: 0 0 0.6rem;
     font-family: Fraunces, Georgia, serif;
@@ -111,6 +116,23 @@ code {
     font-size: 20px;
 }
 
+.demo {
+    margin-top: 2.25rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+}
+
+.hint {
+    margin-bottom: 1.15rem;
+    padding: 0.85rem 1.1rem;
+    border-left: 4px solid var(--accent);
+    border-radius: 0.7rem;
+    background: var(--hint-bg);
+    color: var(--accent-deep);
+    font-size: 20px;
+    font-weight: 700;
+}
+
 pre {
     margin: 0 0 1.25rem;
     padding: 1.1rem 1.25rem;
@@ -122,39 +144,6 @@ pre {
 pre code {
     padding: 0;
     background: transparent;
-    font-size: 20px;
-    line-height: 1.55;
-}
-
-.demo {
-    margin-top: 2.25rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--line);
-}
-
-.hint {
-    margin-bottom: 1.15rem;
-    font-size: 20px;
-}
-
-.actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-}
-
-.float-demo {
-    max-width: 28rem;
-    overflow: hidden;
-}
-
-.float-demo button {
-    margin: 0 0.75rem 0.75rem 0;
-}
-
-.pull-right {
-    float: right;
-    margin-right: 0;
 }
 
 button {
@@ -175,6 +164,17 @@ button:hover {
     background: var(--button-hover-bg);
 }
 
+.primary {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--on-accent);
+}
+
+.primary:hover {
+    border-color: var(--accent-deep);
+    background: var(--accent-deep);
+}
+
 button:focus-visible {
     outline: 3px solid var(--focus);
     outline-offset: 3px;
@@ -185,5 +185,9 @@ button:focus-visible {
     .card {
         min-height: 0;
         padding: 2rem 1.4rem 1.75rem;
+    }
+
+    button {
+        width: 100%;
     }
 }

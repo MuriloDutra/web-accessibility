@@ -5,19 +5,19 @@
 }
 
 :root {
-    --ink: #1c1712;
-    --muted: #5c5348;
-    --paper: #f3eadc;
-    --card: #fffaf2;
-    --line: #d8cbb6;
-    --accent: #8a3d1b;
-    --accent-deep: #6c2e14;
-    --focus: #0b5f4b;
-    --code-bg: #efe4d2;
-    --hint-bg: #f4e4d4;
-    --button-hover-border: #c4b49a;
-    --button-hover-bg: #fffdf8;
-    --on-accent: #fff8f3;
+    --ink: #1a2233;
+    --muted: #4d586c;
+    --paper: #e4eaf3;
+    --card: #f6f8fc;
+    --line: #c5cddc;
+    --accent: #2f4a8a;
+    --accent-deep: #22366a;
+    --focus: #8a4b00;
+    --code-bg: #dfe6f2;
+    --hint-bg: #e4e8f6;
+    --button-hover-border: #a8b4c8;
+    --button-hover-bg: #eef2f8;
+    --on-accent: #f4f6ff;
 }
 
 html {
@@ -29,8 +29,8 @@ body {
     min-height: 100vh;
     color: var(--ink);
     background:
-        radial-gradient(circle at 12% 18%, rgba(138, 61, 27, 0.08), transparent 32%),
-        radial-gradient(circle at 88% 82%, rgba(11, 95, 75, 0.08), transparent 36%),
+        radial-gradient(circle at 12% 18%, rgba(47, 74, 138, 0.12), transparent 32%),
+        radial-gradient(circle at 88% 82%, rgba(180, 83, 9, 0.1), transparent 36%),
         var(--paper);
     font-family: "Atkinson Hyperlegible", "Segoe UI", sans-serif;
     font-size: 20px;
@@ -52,8 +52,8 @@ body {
     border: 1px solid var(--line);
     border-radius: 1.5rem;
     box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.7) inset,
-        0 22px 50px rgba(55, 38, 18, 0.1);
+        0 1px 0 rgba(255, 255, 255, 0.75) inset,
+        0 22px 50px rgba(26, 34, 51, 0.1);
 }
 
 .eyebrow {

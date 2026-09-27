@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Importance of Semantics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,560;9..144,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <main class="page">
+        <article class="card">
+            <p class="eyebrow"><a href="../index.html">Semantics</a></p>
+            <h1>Importance of Semantics</h1>
+            <p>By using good semantic HTML, you can make your life way easier with accessibility and having some default
+                behavior for free, no need to implement it yourself.</p>
+            <section class="demo" aria-labelledby="regular-heading">
+                <h2 id="regular-heading">Modal - &lt;dialog&gt; vs &lt;div&gt;</h2>
+                <p>By using a &lt;div&gt; to create a modal, you have to manually manage the focus and the keyboard
+                    navigation, while with a &lt;dialog&gt; you have some default behavior for free. Like the ability to
+                    close the modal by pressing the Escape key and to lock the focus inside the modal.</p>
+                <div class="actions">
+                    <button id="div-modal-button" type="button">Open modal with &lt;div&gt;</button>
+                    <button id="dialog-modal-button" type="button" class="primary">Open modal with
+                        &lt;dialog&gt;</button>
+                </div>
+
+                <div class="modal-backdrop" id="div-modal">
+                    <div class="dialog" role="dialog" aria-labelledby="div-modal-title">
+                        <h2 id="div-modal-title">Modal with &lt;div&gt;</h2>
+                        <p>This is a modal with a &lt;div&gt;.</p>
+                        <pre><code>&lt;div id="div-modal" class="modal-backdrop"&gt;
+    ...
+&lt;/div&gt;</code></pre>
+                        <div class="dialog-actions">
+                            <button type="button" id="close-div-modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+
+                <dialog class="dialog" id="dialog-modal" aria-labelledby="dialog-modal-title">
+                    <h2 id="dialog-modal-title">Modal with &lt;dialog&gt;</h2>
+                    <p>This is a modal with a &lt;dialog&gt;.</p>
+                    <pre><code>&lt;dialog id="dialog-modal"&gt;
+    ...
+&lt;/dialog&gt;
+
+openButton.addEventListener('click', () =&gt; {
+    dialog.<mark>showModal()</mark>;
+});</code></pre>
+                    <p class="hint">Note: You must call <code>showModal()</code>. A plain <code>&lt;dialog&gt;</code>
+                        stays hidden until you do. That call also gives you the backdrop, the keyboard trap, and Escape
+                        to close.</p>
+                    <div class="dialog-actions">
+                        <button type="button" id="submit-dialog-modal">Submit</button>
+                        <button type="button" id="close-dialog-modal">Close</button>
+                    </div>
+                </dialog>
+            </section>
+
+            <section class="demo" aria-labelledby="radio-heading">
+                <h2 id="radio-heading">Radio vs list item</h2>
+                <p>Tab into each group, then try the arrow keys. Radios already move focus and the checked option. List
+                    items need roving tabindex: only one item is <code>0</code>, the rest are <code>-1</code>, and you
+                    have to move that <code>0</code> yourself when the arrows are pressed.</p>
+                    <p class="hint">TLDR: use radios, because they have everything you need out of the box.</p>
+
+                <div class="compare">
+                    <div>
+                        <h3>Radios</h3>
+                        <pre><code>&lt;input type="radio" name="size"&gt;</code></pre>
+                        <fieldset>
+                            <legend>Size</legend>
+                            <label><input type="radio" name="size" value="s"> Small</label>
+                            <label><input type="radio" name="size" value="m" checked> Medium</label>
+                            <label><input type="radio" name="size" value="l"> Large</label>
+                        </fieldset>
+                    </div>
+
+                    <div>
+                        <h3>List items</h3>
+                        <pre><code>&lt;li tabindex="0" checked&gt;
+&lt;li tabindex="-1"&gt;
+&lt;li tabindex="-1"&gt;</code></pre>
+                        <ul class="option-list">
+                            <li tabindex="0" checked>Small</li>
+                            <li tabindex="-1">Medium</li>
+                            <li tabindex="-1">Large</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <script>
+        const divModalButton = document.getElementById('div-modal-button');
+        const divModal = document.getElementById('div-modal');
+        const closeDivModal = document.getElementById('close-div-modal');
+
+        const dialogModal = document.getElementById('dialog-modal');
+        const dialogModalButton = document.getElementById('dialog-modal-button');
+        const submitDialogModal = document.getElementById('submit-dialog-modal');
+        const closeDialogModal = document.getElementById('close-dialog-modal');
+
+        divModalButton.addEventListener('click', () => {
+            divModal.classList.add('is-open');
+            closeDivModal.focus();
+        });
+
+        closeDivModal.addEventListener('click', () => {
+            divModal.classList.remove('is-open');
+            divModalButton.focus();
+        });
+
+        dialogModalButton.addEventListener('click', () => {
+            dialogModal.showModal();
+        });
+
+        closeDialogModal.addEventListener('click', () => {
+            dialogModal.close();
+        });
+
+        submitDialogModal.addEventListener('click', () => {
+            dialogModal.close();
+        });
+
+        dialogModal.addEventListener('close', () => {
+            dialogModalButton.focus();
+        });
+
+        const options = [...document.querySelectorAll('.option-list li')];
+
+        function selectOption(next) {
+            options.forEach((item) => {
+                const selected = item === next;
+                item.tabIndex = selected ? 0 : -1;
+                item.toggleAttribute('checked', selected);
+            });
+            next.focus();
+        }
+
+        options.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                selectOption(item);
+            });
+
+            item.addEventListener('keydown', (event) => {
+                let nextIndex = index;
+
+                if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+                    nextIndex = (index + 1) % options.length;
+                } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+                    nextIndex = (index - 1 + options.length) % options.length;
+                } else {
+                    return;
+                }
+
+                event.preventDefault();
+                selectOption(options[nextIndex]);
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -39,7 +39,11 @@
                     &lt;img&gt; alt attribute
                 </h2>
                 <p>The alt attribute is used to provide a text description of the image. This helps screen readers
-                    understand the image and its purpose.</p>
+                    understand the image and its purpose.
+                <p>
+                <p class="hint">Note: A good exercise is to purposefully fail to load all the
+                    images on the page and see if only with the alt/alternate texts you can still understand what the
+                    page is about.</p>
                 <pre
                     class="snippet snippet-ok"><code>&lt;img src="image.jpg" alt="A description of the image"&gt;</code></pre>
                 <pre class="snippet snippet-bad"><code>&lt;img src="image.jpg" alt=""&gt;</code></pre>
@@ -63,7 +67,8 @@
 
             <section class="demo" aria-labelledby="icon-heading">
                 <h2 id="icon-heading">Icon-only buttons</h2>
-                <p>A hamburger that is only three lines has no name. A screen reader may say “button” and nothing else. Name the control, and hide the drawing from assistive technology.</p>
+                <p>A hamburger that is only three lines has no name. A screen reader may say “button” and nothing else.
+                    Name the control, and hide the drawing from assistive technology.</p>
 
                 <div class="icon-examples">
                     <div>
@@ -75,7 +80,7 @@
                             </span>
                         </button>
                     </div>
-              
+
                 </div>
 
                 <pre class="snippet snippet-ok"><code>&lt;button type="button" aria-label="Open menu"&gt;
@@ -84,7 +89,8 @@
                 <pre class="snippet snippet-bad"><code>&lt;button type="button"&gt;
     &lt;span class="hamburger"&gt;&lt;/span&gt;
 &lt;/button&gt;</code></pre>
-                <p class="hint">Note: <code>aria-hidden="true"</code> keeps the bars out of the accessibility tree. The name lives on the button, e.g. <code>aria-label="Open menu"</code> or visible text like “Menu”.</p>
+                <p class="hint">Note: <code>aria-hidden="true"</code> keeps the bars out of the accessibility tree. The
+                    name lives on the button, e.g. <code>aria-label="Open menu"</code> or visible text like “Menu”.</p>
             </section>
         </article>
     </main>

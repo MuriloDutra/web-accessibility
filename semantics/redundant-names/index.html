@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redundant names</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,560;9..144,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <main class="page">
+        <article class="card">
+            <p class="eyebrow"><a href="../index.html">Semantics</a></p>
+            <h1>Redundant names</h1>
+            <p>More text is not always better. If the icon sits next to a word the user can already hear, naming the
+                icon again makes the control noisy.</p>
+
+            <section class="demo" aria-labelledby="search-heading">
+                <h2 id="search-heading">Icon plus visible text</h2>
+                <p>A search button that shows a magnifying glass and the word “Search” already has a name. An
+                    <code>alt</code> like “magnifying lens” makes a screen reader say something like “magnifying lens,
+                    Search, button”.</p>
+
+                <div class="icon-examples">
+                    <button type="button" class="search-button">
+                        <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <circle cx="10.5" cy="10.5" r="6.25" fill="none" stroke="currentColor" stroke-width="2">
+                            </circle>
+                            <path d="M15.2 15.2 20 20" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round"></path>
+                        </svg>
+                        Search
+                    </button>
+                </div>
+
+                <pre class="snippet snippet-ok"><code>&lt;button type="button"&gt;
+    &lt;svg aria-hidden="true"&gt;...&lt;/svg&gt;
+    Search
+&lt;/button&gt;</code></pre>
+                <pre class="snippet snippet-bad"><code>&lt;button type="button"&gt;
+    &lt;img src="search.svg" alt="magnifying lens"&gt;
+    Search
+&lt;/button&gt;</code></pre>
+                <p class="hint">Note: Hide a decorative icon with <code>aria-hidden="true"</code> or
+                    <code>alt=""</code>. Keep a name on the icon only when there is no visible text, like the hamburger
+                    in Screen Readers.</p>
+            </section>
+        </article>
+    </main>
+</body>
+
+</html>

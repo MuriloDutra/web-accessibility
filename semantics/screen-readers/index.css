@@ -1,0 +1,77 @@
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.mark svg {
+    width: 1.1em;
+    height: 1.1em;
+    flex-shrink: 0;
+    fill: currentColor;
+}
+
+.mark-ok {
+    color: #0b5f4b;
+}
+
+.mark-bad {
+    color: #9b1c1c;
+}
+
+.snippet-ok {
+    background: #d8efe6;
+    border-left: 4px solid #0b5f4b;
+}
+
+.snippet-bad {
+    background: #fde8e8;
+    border-left: 4px solid #9b1c1c;
+}
+
+.icon-examples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 2rem;
+    margin-bottom: 1.15rem;
+}
+
+.icon-examples p {
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.icon-button {
+    display: inline-grid;
+    place-items: center;
+    width: 3rem;
+    padding: 0;
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.28rem;
+    width: 1.25rem;
+}
+
+.hamburger span {
+    display: block;
+    height: 0.16rem;
+    border-radius: 99px;
+    background: var(--ink);
+}

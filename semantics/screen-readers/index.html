@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen Readers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,560;9..144,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <main class="page">
+        <article class="card">
+            <p class="eyebrow"><a href="../index.html">Semantics</a></p>
+            <h1>Screen Readers</h1>
+            <p>Using the HTML tags correctly helps screen readers understand the content of the page and navigate
+                through it. A few examples:</p>
+
+            <section class="demo" aria-labelledby="button-vs-div-heading">
+                <h2 id="button-vs-div-heading">
+                    &lt;button&gt; vs &lt;div&gt;
+                </h2>
+                <p>By using a button tag you facilitate the interpretation of the page for screen readers. The user
+                    listening to the page will know that the button is clickable</p>
+                <p class="hint">Note: This is also helpful for keyboard users because they can focus on the button using
+                    only the keyboard.</p>
+
+                <pre class="snippet snippet-ok"><code>&lt;button&gt;Click me&lt;/button&gt;</code></pre>
+                <pre class="snippet snippet-bad"><code>&lt;div role="button"&gt;Click me&lt;/div&gt;</code></pre>
+            </section>
+            <section class="demo" aria-labelledby="image-alt-heading">
+                <h2 id="image-alt-heading">
+                    &lt;img&gt; alt attribute
+                </h2>
+                <p>The alt attribute is used to provide a text description of the image. This helps screen readers
+                    understand the image and its purpose.</p>
+                <pre
+                    class="snippet snippet-ok"><code>&lt;img src="image.jpg" alt="A description of the image"&gt;</code></pre>
+                <pre class="snippet snippet-bad"><code>&lt;img src="image.jpg" alt=""&gt;</code></pre>
+            </section>
+            <section class="demo" aria-labelledby="icon-aria-heading">
+                <h2 id="icon-aria-heading">Label + Input</h2>
+                <p>The label tag is used to provide a text description of the input. This helps screen readers
+                    understand the input and its purpose.</p>
+                <pre class="snippet snippet-ok"><code>&lt;label for="address"&gt;Address&lt;/label&gt;
+&lt;input id="address" type="checkbox" checked name="address"&gt;</code></pre>
+                <p>Or wrap the control so the label and input stay together:</p>
+                <pre class="snippet snippet-ok"><code>&lt;label&gt;
+    Address
+    &lt;input type="checkbox" checked name="address"&gt;
+&lt;/label&gt;</code></pre>
+                <pre class="snippet snippet-bad"><code>&lt;div&gt;
+    Address
+    &lt;input type="checkbox" checked name="address"&gt;
+&lt;/div&gt;</code></pre>
+            </section>
+
+            <section class="demo" aria-labelledby="icon-heading">
+                <h2 id="icon-heading">Icon-only buttons</h2>
+                <p>A hamburger that is only three lines has no name. A screen reader may say “button” and nothing else. Name the control, and hide the drawing from assistive technology.</p>
+
+                <div class="icon-examples">
+                    <div>
+                        <button type="button" class="icon-button" aria-label="Open menu">
+                            <span class="hamburger" aria-hidden="true">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                        </button>
+                    </div>
+              
+                </div>
+
+                <pre class="snippet snippet-ok"><code>&lt;button type="button" aria-label="Open menu"&gt;
+    &lt;span class="hamburger" aria-hidden="true"&gt;&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+                <pre class="snippet snippet-bad"><code>&lt;button type="button"&gt;
+    &lt;span class="hamburger"&gt;&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+                <p class="hint">Note: <code>aria-hidden="true"</code> keeps the bars out of the accessibility tree. The name lives on the button, e.g. <code>aria-label="Open menu"</code> or visible text like “Menu”.</p>
+            </section>
+        </article>
+    </main>
+</body>
+
+</html>

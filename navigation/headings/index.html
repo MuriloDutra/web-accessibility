@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Headings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,560;9..144,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <main class="page">
+        <article class="card">
+            <p class="eyebrow"><a href="../index.html">Navigation</a></p>
+            <h1>Headings</h1>
+            <p>Headings are a map of the page. People using a screen reader can list every heading and jump straight
+                to a section. The level, from <code>h1</code> to <code>h6</code>, says how those sections nest. The
+                size of the text belongs in CSS.</p>
+
+            <section class="demo" aria-labelledby="nav-heading">
+                <h2 id="nav-heading">Headings are how people move</h2>
+                <p>A screen reader builds a list from the heading tags. That list works like a table of contents. A
+                    line that is only big stays off the list, so there is nothing to jump to.</p>
+                <p>The line below is a paragraph with a large font. Open the heading list and it will be missing.</p>
+                <p class="looks-like-heading">20% off this week</p>
+                <button type="button" id="show-headings" aria-expanded="false" aria-controls="heading-list">Show the heading list</button>
+                <div id="heading-list" class="heading-list" hidden>
+                    <p id="heading-list-label">Headings on this page</p>
+                    <ul id="heading-items" aria-labelledby="heading-list-label"></ul>
+                </div>
+                <p class="hint">Note: In NVDA and JAWS this list is a shortcut away. In VoiceOver it is the rotor, set
+                    to Headings. The button above does the same job: it only includes <code>h1</code> to
+                    <code>h6</code>.</p>
+            </section>
+
+            <section class="demo" aria-labelledby="level-heading">
+                <h2 id="level-heading">The level is the outline</h2>
+                <p>Use <code>h1</code> for the page title, <code>h2</code> for the main sections, and <code>h3</code>
+                    for parts of a section. A sale line can be huge and still be a paragraph. Picking <code>h1</code>
+                    because the type is large puts a second page title in the map.</p>
+
+                <div class="compare">
+                    <div>
+                        <h3 id="sized-with-css-heading">Sized with CSS</h3>
+                        <pre class="snippet snippet-ok"><code>&lt;h1&gt;Weekly menu&lt;/h1&gt;
+&lt;h2&gt;Breakfast&lt;/h2&gt;
+&lt;p class="promo"&gt;20% off this week&lt;/p&gt;</code></pre>
+                        <p class="promo">20% off this week</p>
+                    </div>
+
+                    <div>
+                        <h3 id="sized-with-tag-heading">Sized with a heading tag</h3>
+                        <pre class="snippet snippet-bad"><code>&lt;h1&gt;20% off this week&lt;/h1&gt;
+&lt;h1&gt;Weekly menu&lt;/h1&gt;
+&lt;h1&gt;Breakfast&lt;/h1&gt;</code></pre>
+                        <p>The sale, the page, and the section are all titles. The heading list has no nesting, so there
+                            is no way to tell the banner from the content.</p>
+                    </div>
+                </div>
+                <p class="hint">Note: Keep a single <code>h1</code>, the title of the page. Everything else nests under
+                    it.</p>
+            </section>
+
+            <section class="demo" aria-labelledby="order-heading">
+                <h2 id="order-heading">Keep the levels in order</h2>
+                <p>Go one level at a time. An <code>h3</code> belongs under an <code>h2</code>. Skipping from
+                    <code>h2</code> to <code>h4</code>, or from <code>h1</code> to <code>h4</code>, leaves a gap. The
+                    heading list can no longer show what belongs to what.</p>
+
+                <div class="compare">
+                    <div>
+                        <h3 id="in-order-heading">Levels in order</h3>
+                        <pre class="snippet snippet-ok"><code>&lt;h1&gt;Weekly menu&lt;/h1&gt;
+&lt;h2&gt;Breakfast&lt;/h2&gt;
+&lt;h3&gt;Oatmeal&lt;/h3&gt;
+&lt;h2&gt;Dinner&lt;/h2&gt;</code></pre>
+                        <ul class="outline outline-ok">
+                            <li data-level="h1"><span class="level">h1</span> Weekly menu</li>
+                            <li data-level="h2"><span class="level">h2</span> Breakfast</li>
+                            <li data-level="h3"><span class="level">h3</span> Oatmeal</li>
+                            <li data-level="h2"><span class="level">h2</span> Dinner</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 id="skipped-levels-heading">Levels with a gap</h3>
+                        <pre class="snippet snippet-bad"><code>&lt;h1&gt;Weekly menu&lt;/h1&gt;
+&lt;h4&gt;Breakfast&lt;/h4&gt;
+&lt;h6&gt;Oatmeal&lt;/h6&gt;</code></pre>
+                        <ul class="outline outline-bad">
+                            <li data-level="h1"><span class="level">h1</span> Weekly menu</li>
+                            <li data-level="h4"><span class="level">h4</span> Breakfast</li>
+                            <li data-level="h6"><span class="level">h6</span> Oatmeal</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="hint">Note: A design can have many type sizes. You still only need as many heading levels as
+                    the content nests. The extra sizes are CSS classes.</p>
+            </section>
+        </article>
+    </main>
+
+    <script>
+        const showHeadings = document.getElementById('show-headings');
+        const headingList = document.getElementById('heading-list');
+        const headingItems = document.getElementById('heading-items');
+
+        function jumpToHeading(heading) {
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            heading.tabIndex = -1;
+            heading.focus({ focusVisible: true });
+            heading.scrollIntoView({
+                block: 'center',
+                behavior: reduceMotion ? 'auto' : 'smooth',
+            });
+        }
+
+        function showHeadingList() {
+            const headings = [...document.querySelectorAll('h1, h2, h3, h4, h5, h6')];
+            headingItems.replaceChildren();
+
+            headings.forEach((heading) => {
+                const level = heading.tagName.toLowerCase();
+                const item = document.createElement('li');
+                const jump = document.createElement('button');
+                const badge = document.createElement('span');
+
+                item.dataset.level = level;
+                jump.type = 'button';
+                badge.className = 'level';
+                badge.textContent = level;
+                jump.append(badge, document.createTextNode(` ${heading.textContent.trim()}`));
+                jump.addEventListener('click', () => {
+                    jumpToHeading(heading);
+                });
+                item.append(jump);
+                headingItems.append(item);
+            });
+
+            headingList.hidden = false;
+            showHeadings.textContent = 'Hide the heading list';
+            showHeadings.setAttribute('aria-expanded', 'true');
+            headingItems.querySelector('button').focus();
+        }
+
+        function hideHeadingList() {
+            headingList.hidden = true;
+            headingItems.replaceChildren();
+            showHeadings.textContent = 'Show the heading list';
+            showHeadings.setAttribute('aria-expanded', 'false');
+            showHeadings.focus();
+        }
+
+        showHeadings.addEventListener('click', () => {
+            if (headingList.hidden) {
+                showHeadingList();
+            } else {
+                hideHeadingList();
+            }
+        });
+    </script>
+</body>
+
+</html>

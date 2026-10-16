@@ -1,0 +1,152 @@
+.snippet-ok {
+    background: #d8efe6;
+    border-left: 4px solid #0b5f4b;
+}
+
+.snippet-bad {
+    background: #fde8e8;
+    border-left: 4px solid #9b1c1c;
+}
+
+.looks-like-heading,
+.promo {
+    margin: 0 0 1.15rem;
+    color: var(--ink);
+    font-family: Fraunces, Georgia, serif;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+.looks-like-heading {
+    font-size: clamp(2.25rem, 5vw, 3.25rem);
+}
+
+.promo {
+    color: var(--accent);
+    font-size: 2rem;
+}
+
+.compare {
+    display: grid;
+    gap: 1.5rem;
+}
+
+@media (min-width: 720px) {
+    .compare {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+}
+
+.compare > * {
+    min-width: 0;
+}
+
+.compare h3 {
+    margin: 0 0 0.75rem;
+    font-family: Fraunces, Georgia, serif;
+    font-size: 24px;
+    font-weight: 560;
+}
+
+.compare pre {
+    max-width: 100%;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.outline {
+    margin: 0 0 1.15rem;
+    padding: 0.85rem 1rem;
+    list-style: none;
+    border-radius: 0.8rem;
+}
+
+.outline-ok {
+    background: #d8efe6;
+    border-left: 4px solid #0b5f4b;
+}
+
+.outline-bad {
+    background: #fde8e8;
+    border-left: 4px solid #9b1c1c;
+}
+
+.outline li {
+    margin: 0.2rem 0;
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.outline li[data-level="h2"],
+.heading-list li[data-level="h2"] {
+    padding-left: 1.25rem;
+}
+
+.outline li[data-level="h3"],
+.heading-list li[data-level="h3"] {
+    padding-left: 2.5rem;
+}
+
+.outline li[data-level="h4"],
+.heading-list li[data-level="h4"] {
+    padding-left: 3.75rem;
+}
+
+.outline li[data-level="h6"] {
+    padding-left: 6.25rem;
+}
+
+.level {
+    display: inline-block;
+    min-width: 2.1rem;
+    margin-right: 0.45rem;
+    padding: 0.05em 0.35em;
+    border-radius: 0.3rem;
+    background: var(--code-bg);
+    font-family: "SFMono-Regular", ui-monospace, Menlo, monospace;
+    font-size: 0.85em;
+    font-weight: 700;
+}
+
+.heading-list {
+    margin-top: 1rem;
+    padding: 0.85rem 1rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 0.8rem;
+    background: #fff;
+}
+
+.heading-list p {
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.heading-list ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.heading-list button {
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.4rem 0.7rem;
+    border-color: transparent;
+    background: transparent;
+    text-align: left;
+}
+
+.heading-list button:hover {
+    border-color: var(--line);
+    background: var(--button-hover-bg);
+}
+
+h1:focus,
+h2:focus,
+h3:focus {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px var(--card);
+}

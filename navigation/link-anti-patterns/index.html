@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Anti-patterns</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,560;9..144,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <main class="page">
+        <article class="card">
+            <p class="eyebrow"><a href="../index.html">Navigation</a></p>
+            <h1>Link Anti-patterns</h1>
+            <p>Sometimes they might look like a link, but they are not. A span with a click handler, or a link with
+                nowhere to go, only looks like navigation.</p>
+
+            <section class="demo" aria-labelledby="fake-link-heading">
+                <h2 id="fake-link-heading">Looks like a link</h2>
+                <p>A span can be painted to look like a link. It is still text. It is missing from the links list, and
+                    it cannot be focused with the keyboard.</p>
+
+                <p class="try-row"><span class="fake-link">I'm not a link</span></p>
+
+                <pre class="snippet snippet-bad"><code>&lt;span class="link" onclick="doSomething()"&gt;I'm not a link&lt;/span&gt;</code></pre>
+                <p>If the control does something on the page, use a button. Style it like a link if that is the look you
+                    want.</p>
+                <p class="try-row"><button type="button" class="link-button">Now I'm a button</button></p>
+                <pre class="snippet snippet-ok"><code>&lt;button class="link" onclick="doSomething()" type="button"&gt;Now I'm a button&lt;/button&gt;</code></pre>
+            </section>
+
+            <section class="demo" aria-labelledby="link-as-button-heading">
+                <h2 id="link-as-button-heading">A link used as a button</h2>
+                <p>The other way around is just as confusing. An <code>a</code> with no real destination is not a link.
+                    <code>href="#"</code> does not count.</p>
+                <pre class="snippet snippet-bad"><code>&lt;a onclick="doSomething()"&gt;You might think this is a link, but it's not&lt;/a&gt;</code></pre>
+                <pre class="snippet snippet-bad"><code>&lt;a href="#" onclick="doSomething()"&gt;The href here is nonsensical&lt;/a&gt;</code></pre>
+                <p class="hint">Note: A link goes somewhere. A button does something here. Pick the element that matches
+                    the action.</p>
+            </section>
+
+            <section class="demo" aria-labelledby="image-link-heading">
+                <h2 id="image-link-heading">Link and image</h2>
+                <p>A link that only wraps an image has no name unless the image has alt text. The link or the alt
+                    should give enough context so the user can decide if they want to follow the link.</p>
+                <pre class="snippet snippet-bad"><code>&lt;a href="/"&gt;
+    &lt;img src="logo.jpg"&gt;
+&lt;/a&gt;</code></pre>
+                <pre class="snippet snippet-ok"><code>&lt;a href="/"&gt;
+    &lt;img alt="Home" src="logo.jpg"&gt;
+&lt;/a&gt;</code></pre>
+            </section>
+
+            <section class="demo" aria-labelledby="link-text-heading">
+                <h2 id="link-text-heading">Say where the link goes</h2>
+                <p>Avoid “Learn more” on its own. Be specific. The links list (used by screen readers) should not be “learn more”, then “learn
+                    more”, then “learn more” again.</p>
+                <pre class="snippet snippet-bad"><code>&lt;a href="https://www.example.com"&gt;Learn more&lt;/a&gt;</code></pre>
+                <pre class="snippet snippet-ok"><code>&lt;a href="https://www.example.com"&gt;Learn more about responsibly sourced coffee&lt;/a&gt;</code></pre>
+            </section>
+
+            <section class="demo" aria-labelledby="real-link-heading">
+                <h2 id="real-link-heading">A real link</h2>
+                <p class="try-row"><a href="https://www.example.com">Now I'm a link</a></p>
+                <pre class="snippet snippet-ok"><code>&lt;a href="https://www.example.com"&gt;Now I'm a link&lt;/a&gt;</code></pre>
+                <p>Advantages of using a link:</p>
+                <ul class="advantages">
+                    <li>It shows up in the links list for screen readers.</li>
+                    <li>It can be focused with the keyboard.</li>
+                    <li>It can be bookmarked.</li>
+                </ul>
+            </section>
+        </article>
+    </main>
+</body>
+
+</html>

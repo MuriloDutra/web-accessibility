@@ -1,0 +1,83 @@
+.card {
+    min-width: 0;
+}
+
+.snippet {
+    max-width: 100%;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.snippet-ok {
+    background: #d8efe6;
+    border-left: 4px solid #0b5f4b;
+}
+
+.snippet-bad {
+    background: #fde8e8;
+    border-left: 4px solid #9b1c1c;
+}
+
+.try-row {
+    margin-bottom: 1.15rem;
+}
+
+.try-row a,
+.fake-link,
+.link-button {
+    font-weight: 700;
+}
+
+.fake-link {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    cursor: pointer;
+}
+
+.link-button {
+    width: auto;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.link-button:hover {
+    border: 0;
+    background: transparent;
+    color: var(--accent-deep);
+}
+
+.try-row a {
+    color: var(--accent);
+}
+
+.try-row a:hover {
+    color: var(--accent-deep);
+}
+
+.try-row a:focus-visible,
+.link-button:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px var(--card);
+}
+
+.advantages {
+    margin: 0;
+    padding-left: 1.35rem;
+    color: var(--ink);
+}
+
+.advantages li {
+    margin-bottom: 0.45rem;
+}
+
+.advantages li:last-child {
+    margin-bottom: 0;
+}

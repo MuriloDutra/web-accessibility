@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landmarks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,560;9..144,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="page">
+        <div class="card landmarks">
+            <header aria-label="Lesson header">
+                <p class="eyebrow"><a href="../index.html">Navigation</a></p>
+                <nav aria-label="On this page">
+                    <ul class="on-this-page">
+                        <li><a href="#header-heading">Header</a></li>
+                        <li><a href="#nav-heading">Nav</a></li>
+                        <li><a href="#main-heading">Main</a></li>
+                        <li><a href="#footer-heading">Footer</a></li>
+                        <li><a href="#section-heading">Section</a></li>
+                        <li><a href="#article-heading">Article</a></li>
+                        <li><a href="#aside-heading">Aside</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <main aria-labelledby="page-title">
+                <h1 id="page-title">Landmarks</h1>
+                <p>Landmarks are the large regions of a page. A screen reader can list them and jump from one to the
+                    next, the same way it jumps between headings. A <code>div</code> with a class never shows up on
+                    that list.</p>
+                <p>The roles a screen reader announces are banner, navigation, main, contentinfo, region,
+                    article, and complementary. Those come from <code>header</code>, <code>nav</code>,
+                    <code>main</code>, <code>footer</code>, a named <code>section</code>, <code>article</code>, and
+                    <code>aside</code>.</p>
+
+                <button type="button" id="show-landmarks" aria-expanded="false" aria-controls="landmark-list">Show the landmark list</button>
+                <div id="landmark-list" class="landmark-list" hidden>
+                    <p id="landmark-list-label">Landmarks on this page</p>
+                    <ul id="landmark-items" aria-labelledby="landmark-list-label"></ul>
+                </div>
+                <p class="hint">Note: In NVDA and JAWS this list is a shortcut away. In VoiceOver it is the rotor, set
+                    to Landmarks. The button above does the same job. A header inside an article is not a second
+                    banner. A section with no name stays off the list.</p>
+
+                <section class="demo" aria-labelledby="header-heading">
+                    <h2 id="header-heading">Header</h2>
+                    <p>The band at the top of this page is a <code>header</code>. When it belongs to the page, and not
+                        to an article or a section, it is the banner. People use it to jump to the site name and the
+                        primary nav. One banner is enough.</p>
+                    <pre class="snippet snippet-ok"><code>&lt;header&gt;
+    &lt;a href="/"&gt;Northwind Coffee&lt;/a&gt;
+    &lt;nav&gt;...&lt;/nav&gt;
+&lt;/header&gt;</code></pre>
+                    <pre class="snippet snippet-bad"><code>&lt;div class="header"&gt;
+    &lt;a href="/"&gt;Northwind Coffee&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+                </section>
+
+                <section class="demo" aria-labelledby="nav-heading">
+                    <h2 id="nav-heading">Nav</h2>
+                    <p>A <code>nav</code> is a block of links for moving around the site or the page. The list at the
+                        top of this page is one. If you have more than one, name each so the landmark list can tell
+                        them apart.</p>
+                    <pre class="snippet snippet-ok"><code>&lt;nav aria-label="On this page"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#stories"&gt;Stories&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                    <pre class="snippet snippet-bad"><code>&lt;div class="nav"&gt;
+    &lt;a href="#stories"&gt;Stories&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+                    <p class="hint">Note: A single “read more” link is not a nav. Save <code>nav</code> for a real group
+                        of links.</p>
+                </section>
+
+                <section class="demo" aria-labelledby="main-heading">
+                    <h2 id="main-heading">Main</h2>
+                    <p>There is one <code>main</code> on this page: everything between the top band and the bottom
+                        band. It is the primary content. A skip link points here so people can pass the nav.</p>
+                    <pre class="snippet snippet-ok"><code>&lt;main&gt;
+    &lt;h1&gt;Weekly menu&lt;/h1&gt;
+&lt;/main&gt;</code></pre>
+                    <pre class="snippet snippet-bad"><code>&lt;div id="main"&gt;
+    &lt;h1&gt;Weekly menu&lt;/h1&gt;
+&lt;/div&gt;</code></pre>
+                    <p class="hint">Note: One <code>main</code> per page. A second one gives the landmark list two
+                        primary regions.</p>
+                </section>
+
+                <section class="demo" aria-labelledby="footer-heading">
+                    <h2 id="footer-heading">Footer</h2>
+                    <p>The band at the bottom of this page is a <code>footer</code>. When it belongs to the page, it
+                        is the contentinfo landmark: copyright, contact, and other site-wide notes. A footer inside an
+                        article belongs to that article, so it is not a second page footer.</p>
+                    <pre class="snippet snippet-ok"><code>&lt;footer&gt;
+    &lt;p&gt;© Northwind Coffee&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+                    <pre class="snippet snippet-bad"><code>&lt;div class="footer"&gt;
+    &lt;p&gt;© Northwind Coffee&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                </section>
+
+                <section class="demo" aria-labelledby="section-heading">
+                    <h2 id="section-heading">Section</h2>
+                    <p>A <code>section</code> is a part of this page. It becomes a landmark only when it has a name.
+                        A heading inside is not enough. Open the landmark list: Hours is there, and Today’s roast is
+                        not. Today’s roast is still a heading.</p>
+
+                    <div class="compare">
+                        <div>
+                            <h3 class="compare-label">Named, so it is a landmark</h3>
+                            <section class="sample" aria-labelledby="hours-heading">
+                                <h3 id="hours-heading">Hours</h3>
+                                <p>Open until 6. This only makes sense beside the rest of this page.</p>
+                            </section>
+                            <pre class="snippet snippet-ok"><code>&lt;section aria-labelledby="hours-heading"&gt;
+    &lt;h2 id="hours-heading"&gt;Hours&lt;/h2&gt;
+&lt;/section&gt;</code></pre>
+                        </div>
+                        <div>
+                            <h3 class="compare-label">No name, so it is not a landmark</h3>
+                            <section class="sample">
+                                <h3>Today’s roast</h3>
+                                <p>A section in the HTML, and missing from the landmark list.</p>
+                            </section>
+                            <pre class="snippet snippet-bad"><code>&lt;section&gt;
+    &lt;h2&gt;Today’s roast&lt;/h2&gt;
+&lt;/section&gt;</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="demo" aria-labelledby="article-heading">
+                    <h2 id="article-heading">Article</h2>
+                    <p>An <code>article</code> is a piece that stands on its own. The story below is one. It has its
+                        own header, and that header is not a second banner. Open the landmark list and count the
+                        banners: there is still one.</p>
+                    <p class="hint">Note: A good test for an article is whether it would still make sense on its own,
+                        in another context. If you could move that part into a newsletter and it would still stand
+                        alone, it is probably an article. Hours only make sense beside the rest of this page, so they
+                        are a section.</p>
+
+                    <article class="story" aria-labelledby="brew-heading">
+                        <header>
+                            <h3 id="brew-heading">How to brew a cleaner cup</h3>
+                        </header>
+                        <p>Rinse the paper, use water just off the boil, and stop before the last bitter pour.
+                            Moved into a newsletter, this still stands on its own.</p>
+                    </article>
+                    <pre class="snippet snippet-ok"><code>&lt;article&gt;
+    &lt;header&gt;
+        &lt;h2&gt;How to brew a cleaner cup&lt;/h2&gt;
+    &lt;/header&gt;
+    &lt;p&gt;Rinse the paper, and stop before the last bitter pour.&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+                </section>
+
+                <section class="demo" aria-labelledby="aside-heading">
+                    <h2 id="aside-heading">Aside</h2>
+                    <p>An <code>aside</code> is related to the page, and it is not the main point. A screen reader
+                        announces it as complementary, so people can jump to it or skip past it. The note below is
+                        about the brewing story. The story still makes sense without it.</p>
+                    <aside class="aside-note" aria-labelledby="related-heading">
+                        <h3 id="related-heading">Related</h3>
+                        <p>A grinder matters more than a fancy kettle.</p>
+                    </aside>
+                    <pre class="snippet snippet-ok"><code>&lt;aside aria-labelledby="related-heading"&gt;
+    &lt;h2 id="related-heading"&gt;Related&lt;/h2&gt;
+    &lt;p&gt;A grinder matters more than a fancy kettle.&lt;/p&gt;
+&lt;/aside&gt;</code></pre>
+                    <p class="hint">Note: Name each <code>aside</code> when there is more than one, so the landmark
+                        list can tell them apart.</p>
+                </section>
+            </main>
+
+            <footer aria-label="Lesson footer">
+                <p>This band is the footer. It is the contentinfo landmark.</p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        const showLandmarks = document.getElementById('show-landmarks');
+        const landmarkList = document.getElementById('landmark-list');
+        const landmarkItems = document.getElementById('landmark-items');
+        const nestedIn = 'article, aside, main, nav, section';
+
+        function explicitName(element) {
+            const labelledBy = element.getAttribute('aria-labelledby');
+            if (labelledBy) {
+                return labelledBy.split(/\s+/)
+                    .map((id) => document.getElementById(id)?.textContent.trim() ?? '')
+                    .filter(Boolean)
+                    .join(' ');
+            }
+            return element.getAttribute('aria-label')?.trim() ?? '';
+        }
+
+        function landmarkRole(element) {
+            const tag = element.tagName;
+            const inside = element.parentElement?.closest(nestedIn);
+
+            if (tag === 'HEADER') return inside ? null : 'banner';
+            if (tag === 'FOOTER') return inside ? null : 'contentinfo';
+            if (tag === 'NAV') return 'navigation';
+            if (tag === 'MAIN') return 'main';
+            if (tag === 'ARTICLE') return 'article';
+            if (tag === 'ASIDE') return 'complementary';
+            if (tag === 'SEARCH') return 'search';
+            if (tag === 'FORM') return explicitName(element) ? 'form' : null;
+            if (tag === 'SECTION') return explicitName(element) ? 'region' : null;
+            return null;
+        }
+
+        function landmarkDepth(element) {
+            let depth = 0;
+            let parent = element.parentElement;
+            while (parent) {
+                if (landmarkRole(parent)) depth += 1;
+                parent = parent.parentElement;
+            }
+            return depth;
+        }
+
+        function jumpToLandmark(landmark) {
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            landmark.tabIndex = -1;
+            landmark.focus({ focusVisible: true });
+            landmark.scrollIntoView({
+                block: 'center',
+                behavior: reduceMotion ? 'auto' : 'smooth',
+            });
+        }
+
+        function showLandmarkList() {
+            const candidates = document.querySelectorAll('header, nav, main, footer, article, aside, section, form, search');
+            landmarkItems.replaceChildren();
+
+            [...candidates].forEach((candidate) => {
+                const role = landmarkRole(candidate);
+                if (!role) return;
+
+                const item = document.createElement('li');
+                const jump = document.createElement('button');
+                const badge = document.createElement('span');
+                const name = explicitName(candidate);
+
+                item.dataset.depth = String(landmarkDepth(candidate));
+                jump.type = 'button';
+                badge.className = 'role';
+                badge.textContent = role;
+                jump.append(badge, document.createTextNode(name ? ` ${name}` : ''));
+                jump.addEventListener('click', () => {
+                    jumpToLandmark(candidate);
+                });
+                item.append(jump);
+                landmarkItems.append(item);
+            });
+
+            landmarkList.hidden = false;
+            showLandmarks.textContent = 'Hide the landmark list';
+            showLandmarks.setAttribute('aria-expanded', 'true');
+            landmarkItems.querySelector('button').focus();
+        }
+
+        function hideLandmarkList() {
+            landmarkList.hidden = true;
+            landmarkItems.replaceChildren();
+            showLandmarks.textContent = 'Show the landmark list';
+            showLandmarks.setAttribute('aria-expanded', 'false');
+            showLandmarks.focus();
+        }
+
+        showLandmarks.addEventListener('click', () => {
+            if (landmarkList.hidden) {
+                showLandmarkList();
+            } else {
+                hideLandmarkList();
+            }
+        });
+    </script>
+</body>
+
+</html>

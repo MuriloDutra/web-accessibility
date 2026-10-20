@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARIA examples</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,560;9..144,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <main class="page">
+        <article class="card">
+            <p class="eyebrow"><a href="../index.html">WAI-ARIA</a></p>
+            <h1>ARIA examples</h1>
+            <p>Three patterns HTML has no tag for: a tree you can open and close, a button that is only an icon, and a
+                message that shows up after the page has loaded.</p>
+
+            <section class="demo" aria-labelledby="tree-heading">
+                <h2 id="tree-heading">Tree</h2>
+                <p>A nested list is only a list. <code>role="tree"</code> and <code>role="treeitem"</code> tell
+                    assistive technology this is a tree. <code>aria-expanded</code> says whether a row is open. The
+                    rows inside a parent sit in a <code>ul</code> with <code>role="group"</code>.</p>
+                <p class="hint">Note: The roles describe the tree. Opening a row is still script: set
+                    <code>aria-expanded</code> and show the group. Arrow keys move through the open rows. Right opens a
+                    row, Left closes it.</p>
+
+                <div class="tree-panel">
+                    <ul class="tree" id="course-tree" role="tree" aria-label="Accessibility course">
+                        <li role="treeitem" aria-expanded="true" tabindex="0">
+                            <span class="tree-label">Accessibility course</span>
+                            <ul role="group">
+                                <li role="treeitem" aria-expanded="false" tabindex="-1">
+                                    <span class="tree-label">Introduction</span>
+                                    <ul role="group" hidden>
+                                        <li role="treeitem" tabindex="-1"><span class="tree-label">Welcome</span></li>
+                                        <li role="treeitem" tabindex="-1"><span class="tree-label">What you will learn</span></li>
+                                    </ul>
+                                </li>
+                                <li role="treeitem" aria-expanded="false" tabindex="-1">
+                                    <span class="tree-label">Focus</span>
+                                    <ul role="group" hidden>
+                                        <li role="treeitem" tabindex="-1"><span class="tree-label">Keyboard focus</span>
+                                        </li>
+                                        <li role="treeitem" tabindex="-1"><span class="tree-label">Skip links</span>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li role="treeitem" aria-expanded="false" tabindex="-1">
+                                    <span class="tree-label">Semantics: Basics</span>
+                                    <ul role="group" hidden>
+                                        <li role="treeitem" tabindex="-1"><span class="tree-label">Semantic HTML</span>
+                                        </li>
+                                        <li role="treeitem" tabindex="-1"><span class="tree-label">Screen readers</span>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li role="treeitem" aria-expanded="false" tabindex="-1">
+                                    <span class="tree-label">Semantics: Navigation</span>
+                                    <ul role="group" hidden>
+                                        <li role="treeitem" tabindex="-1"><span class="tree-label">Headings</span></li>
+                                        <li role="treeitem" tabindex="-1"><span class="tree-label">Landmarks</span></li>
+                                    </ul>
+                                </li>
+                                <li role="treeitem" aria-expanded="true" tabindex="-1">
+                                    <span class="tree-label">Semantics: ARIA</span>
+                                    <ul role="group">
+                                        <li role="treeitem" tabindex="-1"><span class="tree-label">Introduction</span>
+                                        </li>
+                                        <li role="treeitem" tabindex="-1"><span class="tree-label">Why ARIA?</span></li>
+                                        <li role="treeitem" tabindex="-1"><span class="tree-label">First steps with ARIA</span></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <pre class="snippet snippet-ok"><code>&lt;ul role="tree"&gt;
+    &lt;li role="treeitem" aria-expanded="true" aria-labelledby="course-label"&gt;
+        &lt;span id="course-label"&gt;Accessibility course&lt;/span&gt;
+        &lt;ul role="group"&gt;
+            &lt;li role="treeitem" aria-expanded="false" aria-labelledby="intro-label"&gt;
+                &lt;span id="intro-label"&gt;Introduction&lt;/span&gt;
+            &lt;/li&gt;
+            &lt;li role="treeitem" aria-expanded="false" aria-labelledby="focus-label"&gt;
+                &lt;span id="focus-label"&gt;Focus&lt;/span&gt;
+            &lt;/li&gt;
+            &lt;!-- ... --&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                <p><code>aria-labelledby</code> points each row’s name at its own label. A screen reader can then say
+                    “Accessibility course, expanded” and move through the open rows. A collapsed row has
+                    <code>aria-expanded="false"</code>, and its group stays hidden.</p>
+            </section>
+
+            <section class="demo" aria-labelledby="image-button-heading">
+                <h2 id="image-button-heading">Image button</h2>
+                <p>A button that contains only a drawing has an empty name. The accessibility tree records
+                    <code>button</code> and nothing else. <code>aria-label="Filter"</code> gives that button the name
+                    “Filter”.</p>
+
+                <div class="pair">
+                    <div>
+                        <p>Name: “”</p>
+                        <button type="button" class="glyph">
+                            <span class="filter-glyph"></span>
+                        </button>
+                    </div>
+                    <div>
+                        <p>Name: “Filter”</p>
+                        <button type="button" class="glyph" aria-label="Filter">
+                            <span class="filter-glyph" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <pre class="snippet snippet-bad"><code>&lt;button class="glyph"&gt;
+    &lt;div class="filter-glyph"&gt;&lt;/div&gt;
+&lt;/button&gt;</code></pre>
+                <pre class="snippet snippet-ok"><code>&lt;button class="glyph" aria-label="Filter"&gt;
+    &lt;div class="filter-glyph" aria-hidden="true"&gt;&lt;/div&gt;
+&lt;/button&gt;</code></pre>
+                <p class="hint">Note: <code>aria-label</code> sets the name in the accessibility tree. It does not add
+                    visible text. <code>aria-hidden="true"</code> keeps the icon out of that tree, so the name lives on
+                    the button.</p>
+            </section>
+
+            <section class="demo" aria-labelledby="live-heading">
+                <h2 id="live-heading">Live update</h2>
+                <p>Text added after the page loads can be easy to miss. <code>role="alert"</code> marks the new message
+                    as a live region, so a screen reader announces it.</p>
+
+                <button type="button" class="primary" id="check-connection">Check connection</button>
+                <div id="connection-status"></div>
+
+                <pre class="snippet snippet-ok"><code>&lt;div role="alert"&gt;
+    Could not connect!
+&lt;/div&gt;</code></pre>
+                <p class="hint">Note: The alert is added when the check fails. A screen reader then says “Could not
+                    connect!” <code>role="alert"</code> is for a message that needs attention now.</p>
+            </section>
+        </article>
+    </main>
+
+    <script>
+        const tree = document.getElementById('course-tree');
+
+        tree.querySelectorAll('[role="treeitem"]').forEach((item, index) => {
+            const label = item.querySelector(':scope > .tree-label');
+            label.id = `tree-label-${index}`;
+            item.setAttribute('aria-labelledby', label.id);
+        });
+
+        function visibleItems() {
+            return [...tree.querySelectorAll('[role="treeitem"]')].filter((item) => !item.closest('[hidden]'));
+        }
+
+        function groupOf(item) {
+            return item.querySelector(':scope > [role="group"]');
+        }
+
+        function focusItem(item) {
+            visibleItems().forEach((entry) => entry.setAttribute('tabindex', '-1'));
+            item.setAttribute('tabindex', '0');
+            item.focus();
+        }
+
+        function toggle(item) {
+            const group = groupOf(item);
+            if (!group) {
+                return;
+            }
+
+            const expanded = item.getAttribute('aria-expanded') === 'true';
+            item.setAttribute('aria-expanded', String(!expanded));
+            group.hidden = expanded;
+        }
+
+        tree.addEventListener('click', (event) => {
+            const item = event.target.closest('[role="treeitem"]');
+            if (!item || !tree.contains(item)) {
+                return;
+            }
+
+            focusItem(item);
+            if (item.hasAttribute('aria-expanded')) {
+                toggle(item);
+            }
+        });
+
+        tree.addEventListener('keydown', (event) => {
+            const current = event.target.closest('[role="treeitem"]');
+            if (!current || !tree.contains(current)) {
+                return;
+            }
+
+            const items = visibleItems();
+            const index = items.indexOf(current);
+            let next = null;
+
+            switch (event.key) {
+                case 'ArrowDown':
+                    next = items[index + 1];
+                    break;
+                case 'ArrowUp':
+                    next = items[index - 1];
+                    break;
+                case 'ArrowRight':
+                    if (current.getAttribute('aria-expanded') === 'false') {
+                        toggle(current);
+                    } else if (current.getAttribute('aria-expanded') === 'true') {
+                        next = groupOf(current)?.querySelector(':scope > [role="treeitem"]');
+                    }
+                    break;
+                case 'ArrowLeft':
+                    if (current.getAttribute('aria-expanded') === 'true') {
+                        toggle(current);
+                    } else {
+                        next = current.parentElement.closest('[role="treeitem"]');
+                    }
+                    break;
+                case 'Home':
+                    next = items[0];
+                    break;
+                case 'End':
+                    next = items[items.length - 1];
+                    break;
+                case 'Enter':
+                case ' ':
+                    if (current.hasAttribute('aria-expanded')) {
+                        toggle(current);
+                    }
+                    break;
+                default:
+                    return;
+            }
+
+            event.preventDefault();
+            if (next) {
+                focusItem(next);
+            }
+        });
+
+        const checkConnection = document.getElementById('check-connection');
+        const connectionStatus = document.getElementById('connection-status');
+
+        checkConnection.addEventListener('click', () => {
+            connectionStatus.replaceChildren();
+
+            const message = document.createElement('div');
+            message.className = 'alert';
+            message.setAttribute('role', 'alert');
+            message.textContent = 'Could not connect!';
+            connectionStatus.append(message);
+        });
+    </script>
+</body>
+
+</html>

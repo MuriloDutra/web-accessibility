@@ -1,0 +1,128 @@
+.card {
+    min-width: 0;
+}
+
+.snippet {
+    max-width: 100%;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+.snippet-ok {
+    background: #d8efe6;
+    border-left: 4px solid #0b5f4b;
+}
+
+.snippet-bad {
+    background: #fde8e8;
+    border-left: 4px solid #9b1c1c;
+}
+
+.tree-panel {
+    margin: 0 0 1.25rem;
+    padding: 1rem 1.2rem 1.1rem;
+    border: 1px solid var(--line);
+    border-radius: 0.8rem;
+    background: #fff;
+}
+
+.tree,
+.tree [role="group"] {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tree [role="group"] {
+    padding-left: 1.35rem;
+}
+
+.tree-label {
+    position: relative;
+    display: inline-block;
+    padding: 0.12rem 0.35rem 0.12rem 1.2rem;
+    border-radius: 0.35rem;
+}
+
+[role="treeitem"][aria-expanded] > .tree-label {
+    cursor: pointer;
+}
+
+[role="treeitem"][aria-expanded] > .tree-label::before {
+    content: "";
+    position: absolute;
+    left: 0.15rem;
+    border-style: solid;
+}
+
+[role="treeitem"][aria-expanded="false"] > .tree-label::before {
+    top: 0.55em;
+    border-width: 0.34rem 0 0.34rem 0.46rem;
+    border-color: transparent transparent transparent currentColor;
+}
+
+[role="treeitem"][aria-expanded="true"] > .tree-label::before {
+    top: 0.68em;
+    border-width: 0.46rem 0.34rem 0;
+    border-color: currentColor transparent transparent;
+}
+
+[role="treeitem"]:focus {
+    outline: none;
+}
+
+[role="treeitem"]:focus-visible > .tree-label {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 3px #fff;
+}
+
+.pair {
+    display: grid;
+    gap: 1.25rem;
+    margin-bottom: 1.15rem;
+}
+
+@media (min-width: 720px) {
+    .pair {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+}
+
+.pair p {
+    margin-bottom: 0.55rem;
+    color: var(--ink);
+    font-weight: 700;
+}
+
+button.glyph {
+    display: inline-grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+}
+
+.filter-glyph {
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+    background: #2f6fed;
+    clip-path: polygon(0 0, 100% 0, 64% 46%, 64% 72%, 36% 100%, 36% 46%);
+}
+
+#check-connection {
+    margin-bottom: 0.35rem;
+}
+
+.alert {
+    width: fit-content;
+    min-width: 16rem;
+    margin: 1rem 0 1.25rem;
+    padding: 0.7rem 1.6rem;
+    border-radius: 0.5rem;
+    background: #e85d68;
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+}

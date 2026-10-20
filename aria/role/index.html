@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Role</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,560;9..144,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <main class="page">
+        <article class="card">
+            <p class="eyebrow"><a href="../index.html">WAI-ARIA</a></p>
+            <h1>Role</h1>
+            <p><code>role</code> sets what an element is in the accessibility tree. A screen reader uses that type when
+                it announces the control: button, radio, switch.</p>
+
+            <section class="demo" aria-labelledby="implicit-heading">
+                <h2 id="implicit-heading">Roles that come with the element</h2>
+                <p>Many HTML elements already have a role. The browser adds it to the accessibility tree from the tag,
+                    with no <code>role</code> attribute.</p>
+
+                <dl class="role-map">
+                    <div>
+                        <dt><code>&lt;button&gt;</code></dt>
+                        <dd>button</dd>
+                    </div>
+                    <div>
+                        <dt><code>&lt;a href&gt;</code></dt>
+                        <dd>link</dd>
+                    </div>
+                    <div>
+                        <dt><code>&lt;nav&gt;</code></dt>
+                        <dd>navigation</dd>
+                    </div>
+                    <div>
+                        <dt><code>&lt;input type="checkbox"&gt;</code></dt>
+                        <dd>checkbox</dd>
+                    </div>
+                    <div>
+                        <dt><code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code></dt>
+                        <dd>heading</dd>
+                    </div>
+                </dl>
+
+                <button type="button">Order a drink</button>
+                <p>This button has no <code>role</code> attribute. A screen reader still says “Order a drink,
+                    button”.</p>
+                <p class="hint">Note: Use the HTML element when one already matches the widget. Add <code>role</code>
+                    when you are building a control the tags do not cover.</p>
+            </section>
+
+            <section class="demo" aria-labelledby="radio-heading">
+                <h2 id="radio-heading">Setting a role</h2>
+                <p>These drink options are plain elements. On their own, a screen reader hears the words and no choice.
+                    <code>role="radiogroup"</code> marks the set. <code>role="radio"</code> marks each option.
+                    <code>aria-checked</code> is <code>true</code> or <code>false</code>.</p>
+                <p class="hint">Note: In a real form, use <code>&lt;input type="radio"&gt;</code>. This demo uses
+                    <code>role</code> so you can see it. The role does not put an option in the Tab order or check it
+                    when you press an arrow. <code>tabindex</code> and the script do that. Arrow keys move the
+                    selection.</p>
+
+                <p class="group-label" id="drink-label">Drink options</p>
+                <div class="radios" role="radiogroup" aria-labelledby="drink-label">
+                    <div class="radio" role="radio" aria-checked="true" tabindex="0">Water</div>
+                    <div class="radio" role="radio" aria-checked="false" tabindex="-1">Tea</div>
+                    <div class="radio" role="radio" aria-checked="false" tabindex="-1">Coffee</div>
+                    <div class="radio" role="radio" aria-checked="false" tabindex="-1">Cola</div>
+                    <div class="radio" role="radio" aria-checked="false" tabindex="-1">Ginger Ale</div>
+                </div>
+
+                <pre class="snippet snippet-bad"><code>&lt;div&gt;
+    Drink options
+    &lt;div&gt;Water&lt;/div&gt;
+    &lt;div&gt;Tea&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                <pre class="snippet snippet-ok"><code>&lt;div role="radiogroup" aria-labelledby="drink-label"&gt;
+    &lt;div role="radio" aria-checked="true" tabindex="0"&gt;
+        Water
+    &lt;/div&gt;
+    &lt;div role="radio" aria-checked="false" tabindex="-1"&gt;
+        Tea
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                <p>A screen reader can say “Water, selected, radio” inside “Drink options, radio group”.</p>
+            </section>
+
+            <section class="demo" aria-labelledby="switch-heading">
+                <h2 id="switch-heading">Replacing a role</h2>
+                <p>A <code>&lt;button&gt;</code> starts life as a button. <code>role="switch"</code> replaces that type
+                    with switch. <code>aria-checked</code> stores whether it is on.</p>
+
+                <div class="switch-row">
+                    <button type="button" class="switch" id="enable" role="switch" aria-checked="false">Enable</button>
+                    <p class="status" id="enable-state">Not checked</p>
+                </div>
+
+                <pre class="snippet snippet-bad"><code>&lt;button&gt;Enable&lt;/button&gt;</code></pre>
+                <p>The screen reader would read that as “Enable, button”.</p>
+                <pre class="snippet snippet-ok"><code>&lt;button role="switch" aria-checked="true"&gt;
+    Enable
+&lt;/button&gt;</code></pre>
+                <p>With the role replaced, a screen reader says “Enable, switch, checked” when
+                    <code>aria-checked</code> is true.</p>
+                <p class="hint">Note: The role updates the accessibility tree. You still style the control and handle
+                    the keyboard yourself.</p>
+            </section>
+        </article>
+    </main>
+
+    <script>
+        const group = document.querySelector('[role="radiogroup"]');
+        const radios = [...group.querySelectorAll('[role="radio"]')];
+
+        function selectRadio(index) {
+            radios.forEach((radio, i) => {
+                const selected = i === index;
+                radio.setAttribute('aria-checked', String(selected));
+                radio.tabIndex = selected ? 0 : -1;
+            });
+            radios[index].focus();
+        }
+
+        radios.forEach((radio, index) => {
+            radio.addEventListener('click', () => selectRadio(index));
+        });
+
+        group.addEventListener('keydown', (event) => {
+            const current = radios.indexOf(document.activeElement);
+            if (current === -1) {
+                return;
+            }
+
+            let next = current;
+
+            if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+                next = (current + 1) % radios.length;
+            } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+                next = (current - 1 + radios.length) % radios.length;
+            } else if (event.key === ' ') {
+                next = current;
+            } else {
+                return;
+            }
+
+            event.preventDefault();
+            selectRadio(next);
+        });
+
+        const enable = document.getElementById('enable');
+        const enableState = document.getElementById('enable-state');
+
+        enable.addEventListener('click', () => {
+            const checked = enable.getAttribute('aria-checked') !== 'true';
+            enable.setAttribute('aria-checked', String(checked));
+            enableState.textContent = checked ? 'Checked' : 'Not checked';
+        });
+    </script>
+</body>
+
+</html>

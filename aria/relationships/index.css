@@ -1,0 +1,99 @@
+.card {
+    min-width: 0;
+}
+
+h2 code {
+    padding: 0;
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.snippet {
+    max-width: 100%;
+    white-space: pre;
+    overflow-x: auto;
+}
+
+.snippet-ok {
+    background: #d8efe6;
+    border-left: 4px solid #0b5f4b;
+}
+
+.owns {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+@media (min-width: 720px) {
+    .owns {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+}
+
+.owns-card {
+    min-width: 0;
+    padding: 1rem 1.1rem 1.1rem;
+    border: 1px solid var(--line);
+    border-radius: 0.8rem;
+    background: #fff;
+}
+
+.owns-card p {
+    margin-bottom: 0.65rem;
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.owner {
+    display: grid;
+    place-items: center;
+    min-height: 6.5rem;
+    padding: 0.8rem;
+    border: 1px dashed var(--accent);
+    border-radius: 0.7rem;
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.parked {
+    margin-bottom: 0.5rem;
+    padding: 0.55rem 0.8rem;
+    border: 1px solid var(--line);
+    border-radius: 0.55rem;
+    font-weight: 700;
+}
+
+.parked:last-child {
+    margin-bottom: 0;
+}
+
+.listbox {
+    display: grid;
+    gap: 0.4rem;
+    max-width: 22rem;
+    margin: 0 0 1.25rem;
+    padding: 0.55rem;
+    border: 1px solid var(--line);
+    border-radius: 0.8rem;
+    background: #fff;
+}
+
+.listbox:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px var(--card);
+}
+
+.option {
+    padding: 0.55rem 0.85rem;
+    border-radius: 0.55rem;
+    font-weight: 700;
+}
+
+.option.is-active {
+    background: var(--hint-bg);
+    color: var(--accent-deep);
+    box-shadow: inset 0 0 0 2px var(--accent);
+}

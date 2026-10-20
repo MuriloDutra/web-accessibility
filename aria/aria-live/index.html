@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aria-live</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,560;9..144,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <main class="page">
+        <article class="card">
+            <p class="eyebrow"><a href="../index.html">WAI-ARIA</a></p>
+            <h1><code>aria-live</code></h1>
+            <p>Text that changes after the page loads can be easy to miss. <code>aria-live</code> marks a region so a
+                screen reader announces the new text. The value says how urgent that announcement is.</p>
+
+            <section class="demo" aria-labelledby="values-heading">
+                <h2 id="values-heading">off, polite, assertive</h2>
+                <p>Each box below is a live region that already exists on the page. The button only changes the text
+                    inside it.</p>
+
+                <div class="live-grid">
+                    <div class="live-card">
+                        <h3><code>off</code></h3>
+                        <p class="readout" id="off-readout" aria-live="off" data-count="0">Items: 0</p>
+                        <button type="button" id="add-item">Add an item</button>
+                    </div>
+                    <div class="live-card">
+                        <h3><code>polite</code></h3>
+                        <p class="readout" id="polite-readout" aria-live="polite" data-count="0">Results: 0</p>
+                        <button type="button" id="refresh-results">Refresh results</button>
+                    </div>
+                    <div class="live-card">
+                        <h3><code>assertive</code></h3>
+                        <p class="readout readout-urgent" id="assertive-readout" aria-live="assertive" data-count="0">
+                            Warnings: 0</p>
+                        <button type="button" id="raise-warning">Raise a warning</button>
+                    </div>
+                </div>
+
+                <pre class="snippet snippet-ok"><code>&lt;p aria-live="off"&gt;Items: 1&lt;/p&gt;
+&lt;p aria-live="polite"&gt;Results: 4&lt;/p&gt;
+&lt;p aria-live="assertive"&gt;Warnings: 1&lt;/p&gt;</code></pre>
+                <p><code>off</code> is the ordinary case: the text changes, and a screen reader stays quiet.
+                    <code>polite</code> waits until the person is done with what they are reading, then announces the
+                    update. <code>assertive</code> interrupts and announces it now.</p>
+                <p class="hint">Note: Put <code>aria-live</code> on the region before the text changes. Setting the
+                    attribute in the same moment as the new text is easy for a screen reader to miss. Save
+                    <code>assertive</code> for a message that needs attention immediately, such as an error.</p>
+            </section>
+
+            <section class="demo" aria-labelledby="roles-heading">
+                <h2 id="roles-heading">Roles that bring a live region</h2>
+                <p><code>role="status"</code> is a polite live region. <code>role="alert"</code> is an assertive one.
+                    The <a href="../examples/index.html">ARIA examples</a> page adds an alert when a connection check
+                    fails.</p>
+                <pre class="snippet snippet-ok"><code>&lt;div role="status"&gt;Results: 4&lt;/div&gt;
+&lt;div role="alert"&gt;Could not connect!&lt;/div&gt;</code></pre>
+                <p class="hint">Note: A status is for a quiet update, such as a result count. An alert is for the
+                    interruption, such as “Could not connect!”.</p>
+            </section>
+        </article>
+    </main>
+
+    <script>
+        function bump(id, label) {
+            const readout = document.getElementById(id);
+            const count = Number(readout.dataset.count) + 1;
+            readout.dataset.count = String(count);
+            readout.textContent = `${label}: ${count}`;
+        }
+
+        document.getElementById('add-item').addEventListener('click', () => {
+            bump('off-readout', 'Items');
+        });
+
+        document.getElementById('refresh-results').addEventListener('click', () => {
+            bump('polite-readout', 'Results');
+        });
+
+        document.getElementById('raise-warning').addEventListener('click', () => {
+            bump('assertive-readout', 'Warnings');
+        });
+    </script>
+</body>
+
+</html>

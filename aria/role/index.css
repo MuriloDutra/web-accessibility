@@ -1,0 +1,129 @@
+.card {
+    min-width: 0;
+}
+
+.snippet {
+    max-width: 100%;
+    white-space: pre;
+    overflow-x: auto;
+}
+
+.snippet-ok {
+    background: #d8efe6;
+    border-left: 4px solid #0b5f4b;
+}
+
+.snippet-bad {
+    background: #fde8e8;
+    border-left: 4px solid #9b1c1c;
+}
+
+.role-map {
+    display: grid;
+    gap: 0.75rem 1.5rem;
+    margin: 0 0 1.25rem;
+    padding: 1rem 1.15rem;
+    border: 1px solid var(--line);
+    border-radius: 0.8rem;
+    background: #fff;
+}
+
+@media (min-width: 720px) {
+    .role-map {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+}
+
+.role-map div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+    min-width: 0;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--line);
+}
+
+.role-map dt,
+.role-map dd {
+    margin: 0;
+}
+
+.role-map dt {
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.role-map dd {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.group-label {
+    margin-bottom: 0.7rem;
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.radios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 0 0 1.25rem;
+}
+
+.radio {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 3rem;
+    padding: 0.7rem 1.1rem;
+    border: 1px solid var(--line);
+    border-radius: 0.8rem;
+    background: #fff;
+    color: var(--ink);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.radio::before {
+    content: "";
+    width: 0.95rem;
+    height: 0.95rem;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+}
+
+.radio[aria-checked="true"] {
+    border-color: var(--accent);
+    background: var(--hint-bg);
+    color: var(--accent-deep);
+}
+
+.radio[aria-checked="true"]::before {
+    background: radial-gradient(circle, currentColor 0 42%, transparent 46%);
+}
+
+.radio:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px var(--card);
+}
+
+.switch-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+    margin-bottom: 1.15rem;
+}
+
+.switch-row .status {
+    margin: 0;
+}
+
+.switch[aria-checked="true"] {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--on-accent);
+}

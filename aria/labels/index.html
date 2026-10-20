@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labels</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,560;9..144,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <main class="page">
+        <article class="card">
+            <p class="eyebrow"><a href="../index.html">WAI-ARIA</a></p>
+            <h1>Labels</h1>
+            <p>The name is what a screen reader calls the control. A description is extra detail that comes after that
+                name. These three attributes set those two pieces.</p>
+
+            <section class="demo" aria-labelledby="label-heading">
+                <h2 id="label-heading"><code>aria-label</code></h2>
+                <p><code>aria-label</code> writes the name onto the element. Use it when the visible content is a
+                    symbol, or a word that does not say what the control does.</p>
+
+                <div class="pair">
+                    <div>
+                        <p>Name: “X”</p>
+                        <button type="button" class="close">X</button>
+                    </div>
+                    <div>
+                        <p>Name: “Close”</p>
+                        <button type="button" class="close" aria-label="Close">X</button>
+                    </div>
+                </div>
+
+                <pre class="snippet snippet-bad"><code>&lt;button&gt;X&lt;/button&gt;</code></pre>
+                <pre class="snippet snippet-ok"><code>&lt;button aria-label="Close"&gt;X&lt;/button&gt;</code></pre>
+                <p>The first button is announced “X, button”. The second is announced “Close, button”. Close is the
+                    name in the accessibility tree. The X stays on screen.</p>
+                <p class="hint">Note: <code>aria-label</code> replaces the text inside the element as the name. It does
+                    not add visible words.</p>
+            </section>
+
+            <section class="demo" aria-labelledby="labelledby-heading">
+                <h2 id="labelledby-heading"><code>aria-labelledby</code></h2>
+                <p><code>aria-labelledby</code> points at text that is already on the page. The name is that text. You
+                    can list more than one id, and the browser joins them in that order.</p>
+
+                <div class="field">
+                    <p class="field-label" id="email-label">Email</p>
+                    <input type="email" aria-labelledby="email-label" autocomplete="email">
+                </div>
+
+                <pre class="snippet snippet-ok"><code>&lt;p id="email-label"&gt;Email&lt;/p&gt;
+&lt;input type="email" aria-labelledby="email-label"&gt;</code></pre>
+                <p>A screen reader says “Email” for that field, because the name comes from
+                    <code>#email-label</code>.</p>
+                <p class="hint">Note: Clicking “Email” does not focus the field. A
+                    <code>&lt;label for&gt;</code> does both: it names the control and moves focus there. Use
+                    <code>aria-labelledby</code> when the text already lives somewhere else, such as a heading that
+                    names a group.</p>
+            </section>
+
+            <section class="demo" aria-labelledby="describedby-heading">
+                <h2 id="describedby-heading"><code>aria-describedby</code></h2>
+                <p><code>aria-describedby</code> points at extra help. That text is the description, after the name.
+                    The name still comes from the <code>&lt;label&gt;</code>.</p>
+
+                <div class="field">
+                    <label class="field-label" for="password">Password</label>
+                    <input id="password" type="password" aria-describedby="password-hint" autocomplete="current-password">
+                    <p id="password-hint">At least 8 characters, with a number.</p>
+                </div>
+
+                <pre class="snippet snippet-ok"><code>&lt;label for="password"&gt;Password&lt;/label&gt;
+&lt;input id="password" type="password" aria-describedby="password-hint"&gt;
+&lt;p id="password-hint"&gt;At least 8 characters, with a number.&lt;/p&gt;</code></pre>
+                <p>A screen reader says “Password”, then “At least 8 characters, with a number.” Password is the name.
+                    The hint is the description.</p>
+                <p class="hint">Note: Keep the name short. Put rules, errors, and other help in
+                    <code>aria-describedby</code>.</p>
+            </section>
+
+            <section class="demo" aria-labelledby="order-heading">
+                <h2 id="order-heading">Which name wins</h2>
+                <p>When more than one name is available, the browser uses the first match in this order:</p>
+                <ol class="order">
+                    <li><code>aria-labelledby</code></li>
+                    <li><code>aria-label</code></li>
+                    <li>A <code>&lt;label&gt;</code>, or the text inside the element</li>
+                </ol>
+            </section>
+        </article>
+    </main>
+</body>
+
+</html>

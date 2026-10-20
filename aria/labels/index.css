@@ -1,0 +1,104 @@
+.card {
+    min-width: 0;
+}
+
+h2 code {
+    padding: 0;
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.snippet {
+    max-width: 100%;
+    white-space: pre;
+    overflow-x: auto;
+}
+
+.snippet-ok {
+    background: #d8efe6;
+    border-left: 4px solid #0b5f4b;
+}
+
+.snippet-bad {
+    background: #fde8e8;
+    border-left: 4px solid #9b1c1c;
+}
+
+.pair {
+    display: grid;
+    gap: 1.25rem;
+    margin-bottom: 1.15rem;
+}
+
+@media (min-width: 720px) {
+    .pair {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+}
+
+.pair p {
+    margin-bottom: 0.55rem;
+    color: var(--ink);
+    font-weight: 700;
+}
+
+button.close {
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    font-size: 1.35rem;
+    line-height: 1;
+}
+
+.field {
+    display: grid;
+    gap: 0.45rem;
+    max-width: 24rem;
+    margin-bottom: 1.15rem;
+}
+
+.field-label {
+    margin: 0;
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.field p {
+    margin: 0;
+}
+
+input {
+    min-height: 3rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 0.8rem;
+    background: #fff;
+    color: var(--ink);
+    font: inherit;
+}
+
+input:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px var(--card);
+}
+
+.order {
+    margin: 0;
+    padding: 0.95rem 1rem 0.5rem 2.2rem;
+    border-radius: 0.8rem;
+    border-left: 4px solid var(--accent);
+    background: var(--hint-bg);
+    color: var(--ink);
+}
+
+.order li {
+    margin-bottom: 0.45rem;
+}
+
+@media (max-width: 720px) {
+    input {
+        width: 100%;
+    }
+}

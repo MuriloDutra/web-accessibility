@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First steps with ARIA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,560;9..144,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <main class="page">
+        <article class="card">
+            <p class="eyebrow"><a href="../index.html">WAI-ARIA</a></p>
+            <h1>First steps with ARIA</h1>
+
+            <section class="demo" aria-labelledby="checkbox-heading">
+                <h2 id="checkbox-heading">Custom checkbox</h2>
+                <p class="hint">Note: This is just an example. In reality, you should use the proper HTML for a checkbox,
+                    e.g. <code>&lt;input type="checkbox"&gt;</code> instead of <code>div</code>.</p>
+                <pre class="snippet snippet-bad"><code>&lt;div class="checkbox checked"&gt;
+    Receive promotional emails
+&lt;/div&gt;</code></pre>
+                <p>The screen reader would read the code above as "Receive promotional emails". The user can't
+                    know it's a checkbox. Now let's fix this with WAI-ARIA:</p>
+                <pre class="snippet snippet-ok"><code>&lt;div
+    class="checkbox checked"
+    role="checkbox"
+    aria-checked="true"&gt;
+    Receive promotional emails
+&lt;/div&gt;</code></pre>
+                <p>The screen reader would read the code above as "Receive promotional emails, Check Box checked" and
+                    now the user can know it's a checkbox</p>
+
+                <div class="compare">
+                    <div>
+                        <p>By using WAI-ARIA, you modify:</p>
+                        <ul class="changes">
+                            <li>the accessibility tree</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p>But you do NOT modify:</p>
+                        <ul class="unchanged">
+                            <li>Element appearance</li>
+                            <li>Element behavior</li>
+                            <li>add focusability</li>
+                            <li>add keyboard event handling</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+</body>
+
+</html>

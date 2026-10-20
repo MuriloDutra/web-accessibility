@@ -1,0 +1,64 @@
+.card {
+    min-width: 0;
+}
+
+.snippet {
+    max-width: 100%;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+.snippet-ok {
+    background: #d8efe6;
+    border-left: 4px solid #0b5f4b;
+}
+
+.snippet-bad {
+    background: #fde8e8;
+    border-left: 4px solid #9b1c1c;
+}
+
+.compare {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+@media (min-width: 720px) {
+    .compare {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+}
+
+.compare > * {
+    min-width: 0;
+}
+
+.compare p {
+    margin-bottom: 0.6rem;
+    color: var(--ink);
+    font-weight: 700;
+}
+
+.changes,
+.unchanged {
+    margin: 0;
+    padding: 0.9rem 1rem 0.45rem 2.1rem;
+    border-radius: 0.8rem;
+    color: var(--ink);
+}
+
+.changes {
+    background: #d8efe6;
+    border-left: 4px solid #0b5f4b;
+}
+
+.unchanged {
+    background: var(--hint-bg);
+    border-left: 4px solid var(--accent);
+}
+
+.changes li,
+.unchanged li {
+    margin-bottom: 0.45rem;
+}
